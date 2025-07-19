@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { validateInput } from "../../utils/validate";
-import { validateImg } from "../../utils/validateImg";
-
+import API from "../../API.js";
+import API_URL from "../../api/API_URL.js";
 function Register() {
   const [input, setInput] = useState({
     name: "",
     email: "",
     password: "",
+    phone: "",
     address: "",
     avatar: "",
     level: 0,
@@ -35,31 +36,74 @@ function Register() {
     reader.readAsDataURL(file[0]);
   };
 
+  const showError = (errors) => {
+    if (Object.keys(errors).length > 0) {
+      return Object.keys(errors).map((key, index) => {
+        return <li key={index}>{errors[key]}</li>;
+      });
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    let isCheck = true;
 
-    const errors = validateInput({ input });
+    const errors = validateInput({ input, file });
 
-    // set error vào state
-    setError(errors);
-
-    if (Object.keys(errors).length === 0) {
-      console.log("Form hợp lệ. Gửi dữ liệu:", input);
-      // TODO: Gửi API hoặc xử lý tiếp
-    } else {
-      console.log("Form không hợp lệ", errors);
+    if (Object.keys(errors).length > 0) {
+      setError(errors);
+      return;
     }
 
-    const validateFile = validateImg(file);
+    setError({}); // clear errors
 
-    console.log(validateFile);
+    const data = {
+      name: input.name,
+      email: input.email,
+      password: input.password,
+      phone: input.phone,
+      address: input.address,
+      avatar: avatar,
+      level: 0,
+    };
+
+    console.log(data);
+    console.log(API_URL.REGISTER);
+
+    API.post(API_URL.REGISTER, data).then((response) => {
+      if (response.data.errors) {
+        setError(response.data.errors);
+      } else {
+        alert("Success");
+      }
+    });
+  };
+
+  const ErrorList = ({ errors }) => {
+    if (!errors || Object.keys(errors).length === 0) return null;
+    return (
+      <ul style={{ color: "red", paddingLeft: 20 }}>
+        {Object.entries(errors).map(([key, msg], i) => (
+          <li key={i}>{msg}</li>
+        ))}
+      </ul>
+    );
   };
 
   return (
     <div className="col-sm-4">
       <div className="signup-form">
         <h2>New User Signup!</h2>
+        <ErrorList errors={error} />
+        {avatar && (
+          <div style={{ marginBottom: 10 }}>
+            <img
+              src={avatar}
+              alt="preview"
+              width="100"
+              height="100"
+              style={{ objectFit: "cover", borderRadius: "8px" }}
+            />
+          </div>
+        )}
         <form action="#" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -81,6 +125,12 @@ function Register() {
           />
           <input
             type="text"
+            placeholder="Phone"
+            name="phone"
+            onChange={handleInput}
+          />
+          <input
+            type="text"
             placeholder="Address"
             name="address"
             onChange={handleInput}
@@ -95,6 +145,7 @@ function Register() {
             type="number"
             placeholder="Level"
             name="level"
+            value={input.level}
             onChange={handleInput}
           />
           <button type="submit" className="btn btn-default">
