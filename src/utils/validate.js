@@ -1,5 +1,23 @@
-export const validateInput = ({ input }) => {
+export const validateInput = ({ input, file }) => {
+  const typeFile = ["jpg", "jpeg", "png", "svg"];
+  const maxSize = 1024 * 1024;
   const errors = {};
+
+  let nameFile = "";
+  let sizeFile = 0;
+  if (file) {
+    nameFile = file.name;
+    sizeFile = file.size;
+  }
+
+  const extension = nameFile.split(".").pop().toLowerCase();
+
+  // Kiểm tra avatar
+  if (!typeFile.includes(extension)) {
+    errors.avatar = "Ảnh không hợp lệ (chỉ hỗ trợ jpg, jpeg, png, svg)";
+  } else if (sizeFile > maxSize) {
+    errors.avatar = "Kích thước ảnh phải nhỏ hơn 1MB";
+  }
 
   // Kiểm tra name
   if (!input.name.trim()) {
@@ -25,13 +43,9 @@ export const validateInput = ({ input }) => {
     errors.address = "Địa chỉ không được để trống";
   }
 
-  // Kiểm tra avatar
-  if (!input.avatar) {
-    errors.avatar = "Ảnh đại diện là bắt buộc";
-  }
-
   // Kiểm tra level
-  if (typeof input.level !== "number" || input.level < 0) {
+  const level = Number(input.level);
+  if (isNaN(level) || level < 0) {
     errors.level = "Cấp độ phải là số không âm";
   }
 
