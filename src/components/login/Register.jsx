@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { validateInput } from "../../utils/validate";
+import { validateImg } from "../../utils/validateImg";
 
 function Register() {
   const [input, setInput] = useState({
@@ -36,7 +37,6 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const typeFile = ["jpg", "jpeg", "png", "JPG", "JPEG", "PNG"];
     let isCheck = true;
 
     const errors = validateInput({ input });
@@ -50,6 +50,10 @@ function Register() {
     } else {
       console.log("Form không hợp lệ", errors);
     }
+
+    const validateFile = validateImg(file);
+
+    console.log(validateFile);
   };
 
   return (
