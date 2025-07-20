@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 //import components
 import Index from "./pages/login/Index.jsx";
-import Content from "./layouts/Content.jsx";
+import Home from "./pages/home.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
       <App>
         <Routes>
-          <Route exact path="/" element={<Content />}></Route>
+          <Route exact path="/" element={<Home />}></Route>
           <Route path="/login" element={<Index />}></Route>
         </Routes>
       </App>
