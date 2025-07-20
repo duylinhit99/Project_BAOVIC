@@ -160,7 +160,7 @@ function Header() {
               <div className="mainmenu pull-left">
                 <ul className="nav navbar-nav collapse navbar-collapse">
                   <li>
-                    <a href="index.html">Home</a>
+                    <Link to={"/"}>Home</Link>
                   </li>
                   <li className="dropdown">
                     <a href="#">
