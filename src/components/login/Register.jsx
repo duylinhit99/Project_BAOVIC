@@ -36,17 +36,10 @@ function Register() {
     reader.readAsDataURL(file[0]);
   };
 
-  const showError = (errors) => {
-    if (Object.keys(errors).length > 0) {
-      return Object.keys(errors).map((key, index) => {
-        return <li key={index}>{errors[key]}</li>;
-      });
-    }
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const errors = validateInput({ input, file });
+    const errors = validateInput({ input, file, type: "register" });
 
     if (Object.keys(errors).length > 0) {
       setError(errors);
@@ -64,9 +57,6 @@ function Register() {
       avatar: avatar,
       level: 0,
     };
-
-    console.log(data);
-    console.log(API_URL.REGISTER);
 
     API.post(API_URL.REGISTER, data).then((response) => {
       if (response.data.errors) {
