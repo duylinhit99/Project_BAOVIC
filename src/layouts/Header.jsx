@@ -1,5 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Header() {
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    if (localStorage.getItem("login")) {
+      return (
+        <>
+          <Link to="/login" onClick={handleLogout}>
+            <i className="fa fa-lock"></i> Logout
+          </Link>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Link to="/login">
+            <i className="fa fa-lock"></i> Login
+          </Link>
+        </>
+      );
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("login");
+    navigate("/login");
+  };
   return (
     <header id="header">
       <div className="header_top">
@@ -128,11 +153,7 @@ function Header() {
                       <i className="fa fa-shopping-cart"></i> Cart
                     </a>
                   </li>
-                  <li>
-                    <Link to="/login">
-                      <i className="fa fa-lock"></i> Login
-                    </Link>
-                  </li>
+                  <li>{handleLogin()}</li>
                 </ul>
               </div>
             </div>
