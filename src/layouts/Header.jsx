@@ -213,7 +213,7 @@ function Header() {
                     </a>
                     <ul role="menu" className="sub-menu">
                       <li>
-                        <a href="blog.html">Blog List</a>
+                        <Link to="/blog">Blog List</Link>
                       </li>
                       <li>
                         <a href="blog-single.html">Blog Single</a>
