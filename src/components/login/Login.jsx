@@ -37,18 +37,20 @@ function Login() {
       password: input.password,
     };
 
-    API.post(API_URL.LOGIN, data).then((response) => {
-      const auth = response.data.Auth;
-      const token = response.data.token;
+    API.post(API_URL.LOGIN, data)
+      .then((response) => {
+        const auth = response.data.Auth;
+        const token = response.data.token;
 
-      if (auth) {
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("auth", JSON.stringify(auth));
-        localStorage.setItem("login", true);
+        if (auth) {
+          localStorage.setItem("token", JSON.stringify(token));
+          localStorage.setItem("auth", JSON.stringify(auth));
+          localStorage.setItem("login", true);
 
-        navigation("/");
-      }
-    });
+          navigation("/");
+        }
+      })
+      .catch((errors) => console.log(errors));
   };
 
   const ErrorsList = ({ errors }) => {
