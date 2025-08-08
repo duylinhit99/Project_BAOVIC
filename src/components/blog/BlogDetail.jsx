@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import API_URL from "../../api/API_URL";
 import Comment from "./Comment";
 import ListComment from "./ListComment";
-
+import Rate from "./Rate";
 function BlogDetail() {
   const [data, setData] = useState({});
   const [listComment, setListComment] = useState([]);
@@ -355,11 +355,7 @@ function BlogDetail() {
               <ul className="ratings">
                 <li className="rate-this">Rate this item:</li>
                 <li>
-                  <i className="fa fa-star color"></i>
-                  <i className="fa fa-star color"></i>
-                  <i className="fa fa-star color"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
+                  <Rate idBlog={idBlog} />
                 </li>
                 <li className="color">(6 votes)</li>
               </ul>
