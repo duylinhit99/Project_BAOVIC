@@ -23,7 +23,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const errors = validateInput({ input });
+    const errors = validateInput({ input, type: "login" });
 
     if (Object.keys(errors).length > 0) {
       setError(errors);
