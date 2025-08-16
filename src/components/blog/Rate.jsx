@@ -10,6 +10,7 @@ function Rate(props) {
   const [userRating, setUserRating] = useState(null); // Lưu rating của người dùng nếu có
   let params = useParams();
 
+  // get data rate về để hiển thị ra view
   useEffect(() => {
     API.get(API_URL.RATE + params.id)
       .then((response) => {
@@ -35,6 +36,7 @@ function Rate(props) {
       .catch((error) => console.log(error));
   }, [params.id]);
 
+  // hàm xử lý khi người dùng rate thì tính toán trung bình cộng
   const changeRating = (newRating, name) => {
     if (!localStorage.getItem("login")) {
       alert("Bạn chưa login");

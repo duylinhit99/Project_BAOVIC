@@ -8,6 +8,7 @@ import Index from "./pages/login/Index.jsx";
 import Home from "./pages/home.jsx";
 import Blog from "./components/blog/Blog.jsx";
 import BlogDetail from "./components/blog/BlogDetail.jsx";
+import Account from "./components/account/Account.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Index />}></Route>
           <Route path="/blog" element={<Blog />}></Route>
           <Route path="/blog/detail/:id" element={<BlogDetail />}></Route>
+          <Route path="/account" element={<Account />}></Route>
         </Routes>
       </App>
     </Router>

@@ -10,6 +10,8 @@ export const validateInput = ({ input, file, type }) => {
     sizeFile = file.size;
   }
 
+  console.log(file);
+
   const extension = nameFile.split(".").pop().toLowerCase();
 
   // Kiểm tra name
@@ -37,18 +39,43 @@ export const validateInput = ({ input, file, type }) => {
     }
   }
 
-  // Kiểm tra email
-  if (!input.email.trim()) {
-    errors.email = "Email không được để trống";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) {
-    errors.email = "Email không hợp lệ";
+  if (type === "updateUser") {
+    // không cần kiểm tra password khi cập nhật thông tin người dùng
+    if (!input.name.trim()) {
+      errors.name = "Tên không được để trống";
+    }
+
+    if (!input.address.trim()) {
+      errors.address = "Địa chỉ không được để trống";
+    }
+
+    if (!input.phone.trim()) {
+      errors.phone = "Số điện thoại không được để trống";
+    } else if (!/^\d{10,15}$/.test(input.phone)) {
+      errors.phone = "Số điện thoại không hợp lệ (10-15 chữ số)";
+    }
+
+    if (!typeFile.includes(extension)) {
+      errors.avatar = "Ảnh không hợp lệ (chỉ hỗ trợ jpg, jpeg, png, svg)";
+    } else if (sizeFile > maxSize) {
+      errors.avatar = "Kích thước ảnh phải nhỏ hơn 1MB";
+    }
   }
 
-  // Kiểm tra password
-  if (!input.password.trim()) {
-    errors.password = "Mật khẩu không được để trống";
-  } else if (input.password.length < 6) {
-    errors.password = "Mật khẩu phải có ít nhất 6 ký tự";
+  if (type === "login") {
+    // Kiểm tra email
+    if (!input.email.trim()) {
+      errors.email = "Email không được để trống";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) {
+      errors.email = "Email không hợp lệ";
+    }
+
+    // Kiểm tra password
+    if (!input.password.trim()) {
+      errors.password = "Mật khẩu không được để trống";
+    } else if (input.password.length < 6) {
+      errors.password = "Mật khẩu phải có ít nhất 6 ký tự";
+    }
   }
 
   return errors;
