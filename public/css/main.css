@@ -1559,6 +1559,30 @@ h2.title {
     font-weight: normal;
 }
 
+.cart_menu {
+    background: #FE980F;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+}
+
+.cart_menu .image,
+.cart_menu .description,
+.cart_menu .price,
+.cart_menu .quantity,
+.cart_menu .total {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.table-condensed .cart_product,
+.table-condensed .cart_description,
+.table-condensed .cart_price,
+.table-condensed .cart_quantity{
+    text-align: center;
+}
+
 #cart_items .cart_info .table.table-condensed thead tr {
     height: 51px;
 }
@@ -2457,4 +2481,26 @@ textarea {
 }
 .through {
     text-decoration: line-through;
+}
+
+.table-condensed .cart_total {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cart_total .fa-pencil-square,
+.cart_total .fa-trash-o {
+    font-size: 18px;
+}
+
+.cart_total .fa-pencil-square:hover {
+    cursor: pointer;
+    color: #FE980F;
+}
+
+.cart_total .fa-trash-o:hover {
+    cursor: pointer;
+    color: red;
 }

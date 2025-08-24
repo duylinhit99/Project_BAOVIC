@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function MenuAcc() {
   return (
     <div className="col-sm-3">
@@ -7,49 +9,32 @@ function MenuAcc() {
           <div className="panel panel-default">
             <div className="panel-heading">
               <h4 className="panel-title">
-                <a
+                <Link
                   data-toggle="collapse"
                   data-parent="#accordian"
-                  href="#sportswear"
+                  to="/account"
                 >
                   <span className="badge pull-right">
                     <i className="fa fa-plus"></i>
                   </span>
                   Account
-                </a>
+                </Link>
               </h4>
             </div>
-            {/* <div id="sportswear" className="panel-collapse collapse">
-              <div className="panel-body">
-                <ul>
-                  <li>
-                    <a href="#">Nike </a>
-                  </li>
-                  <li>
-                    <a href="#">Under Armour </a>
-                  </li>
-                  <li>
-                    <a href="#">Adidas </a>
-                  </li>
-                  <li>
-                    <a href="#">Puma</a>
-                  </li>
-                  <li>
-                    <a href="#">ASICS </a>
-                  </li>
-                </ul>
-              </div>
-            </div> */}
           </div>
           <div className="panel panel-default">
             <div className="panel-heading">
               <h4 className="panel-title">
-                <a data-toggle="collapse" data-parent="#accordian" href="#mens">
+                <Link
+                  data-toggle="collapse"
+                  data-parent="#accordian"
+                  to="/my-product"
+                >
                   <span className="badge pull-right">
                     <i className="fa fa-plus"></i>
                   </span>
                   My Product
-                </a>
+                </Link>
               </h4>
             </div>
             <div id="mens" className="panel-collapse collapse">

@@ -9,6 +9,8 @@ import Home from "./pages/home.jsx";
 import Blog from "./components/blog/Blog.jsx";
 import BlogDetail from "./components/blog/BlogDetail.jsx";
 import Account from "./components/account/Account.jsx";
+import AddProduct from "./components/product/AddProduct.jsx";
+import MyProduct from "./components/product/MyProduct.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -20,6 +22,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/blog" element={<Blog />}></Route>
           <Route path="/blog/detail/:id" element={<BlogDetail />}></Route>
           <Route path="/account" element={<Account />}></Route>
+          <Route path="/my-product" element={<MyProduct />}></Route>
+          <Route path="/product/add" element={<AddProduct />}></Route>
         </Routes>
       </App>
     </Router>

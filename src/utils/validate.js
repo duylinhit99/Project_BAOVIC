@@ -10,8 +10,6 @@ export const validateInput = ({ input, file, type }) => {
     sizeFile = file.size;
   }
 
-  console.log(file);
-
   const extension = nameFile.split(".").pop().toLowerCase();
 
   // Kiểm tra name
