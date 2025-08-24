@@ -1,4 +1,21 @@
+import { toast } from "react-toastify";
 function Home() {
+  const login = JSON.parse(localStorage.getItem("login")) || false;
+
+  if (login) {
+    toast.success("Login successfully!", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+    localStorage.removeItem("login");
+    localStorage.setItem("logout", true);
+  }
   return (
     <div className="col-sm-9 padding-right">
       <div className="features_items">

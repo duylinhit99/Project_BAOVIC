@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 function Header() {
   const navigate = useNavigate();
   const handleLogin = () => {
-    if (localStorage.getItem("login")) {
+    if (localStorage.getItem("logout")) {
       return (
         <>
           <Link to="/login" onClick={handleLogout}>
@@ -22,7 +23,15 @@ function Header() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("login");
+    const logout = localStorage.getItem("logout");
+    if (logout) {
+      toast.success("Logout Success!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        theme: "colored",
+      });
+      localStorage.removeItem("logout");
+    }
     navigate("/login");
   };
   return (
